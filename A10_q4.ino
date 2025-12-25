@@ -43,11 +43,11 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.println(message);
 
   if (message.equalsIgnoreCase("ON")) {
-    digitalWrite(ledPin, HIGH);
-    Serial.println("LED turned ON");
-  } else if (message.equalsIgnoreCase("OFF")) {
     digitalWrite(ledPin, LOW);
     Serial.println("LED turned OFF");
+  } else if (message.equalsIgnoreCase("OFF")) {
+    digitalWrite(ledPin, HIGH);
+    Serial.println("LED turned ON");
   } else {
     Serial.println("Invalid command. Use ON or OFF.");
   }
