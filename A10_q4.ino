@@ -1,11 +1,10 @@
 #include <WiFi.h>
 #include <PubSubClient.h>.
 
-// ---------- WiFi Credentials ----------
 const char* ssid = "Tanaya's S24";
 const char* password = "Tanaya@2911";
 
-const char* mqtt_server = "broker.hivemq.com"; // Public broker for testing
+const char* mqtt_server = "broker.hivemq.com"; 
 const int mqtt_port = 1883;
 const char* mqtt_topic = "esp32/led/control";
 const int ledPin = 2;
@@ -57,7 +56,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
-    // Create a random client ID
     String clientId = "ESP32Client-";
     clientId += String(random(0xffff), HEX);
 
@@ -70,7 +68,7 @@ void reconnect() {
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
-      // Add a simple check to understand the rc=-2 error better
+
       if (client.state() == -2) {
         Serial.print(" (Network connection failed. Check broker address and network connectivity)");
       }
@@ -80,7 +78,6 @@ void reconnect() {
   }
 }
 
-// ---------- Setup ----------
 void setup() {
   pinMode(ledPin, OUTPUT);
   Serial.begin(115200);
@@ -90,7 +87,6 @@ void setup() {
   client.setCallback(callback);
 }
 
-// ---------- Main Loop ----------
 void loop() {
   if (!client.connected()) {
     reconnect();
