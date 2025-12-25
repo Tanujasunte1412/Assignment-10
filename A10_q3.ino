@@ -2,8 +2,8 @@
 #include <PubSubClient.h>
 #include "DHT.h"
 
-#define WIFI_SSID       "SUNBEAM"
-#define WIFI_PASSWORD   "1234567890"
+#define WIFI_SSID       "Tanaya's S24"
+#define WIFI_PASSWORD   "Tanaya@2911"
 
 #define MQTT_BROKER     "broker.hivemq.com" 
 #define MQTT_PORT       1883
