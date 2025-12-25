@@ -1,10 +1,9 @@
 #include<WiFi.h>
 
-const char *ssid = "SUNBEAM";
-const char *password = "1234567890";
+const char *ssid = "Tanaya's S24";
+const char *password = "Tanaya@2911";
 
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(115200);
 
   WiFi.mode(WIFI_STA);
