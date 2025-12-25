@@ -2,25 +2,21 @@
 #include <HTTPClient.h>
 #include "DHT.h"
 
-// ====== USER CONFIGURATION ======
-#define WIFI_SSID     "YourWiFiSSID"
-#define WIFI_PASSWORD "YourWiFiPassword"
-#define SERVER_URL    "http://your-server.com/api/data" // Change to your server endpoint
+#define WIFI_SSID     "Tanaya's S24"
+#define WIFI_PASSWORD "Tanaya@2911"
+#define SERVER_URL    "http://your-server.com/api/data" 
 
-#define DHTPIN 4       // GPIO pin where DHT is connected
-#define DHTTYPE DHT22  // Change to DHT11 if using that sensor
+#define DHTPIN 4       
+#define DHTTYPE DHT22
 
-// ====== OBJECTS ======
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   Serial.begin(115200);
   delay(1000);
 
-  // Start DHT sensor
   dht.begin();
 
-  // Connect to Wi-Fi
   Serial.printf("Connecting to WiFi: %s\n", WIFI_SSID);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
@@ -44,17 +40,16 @@ void loop() {
     float temperature = dht.readTemperature(); // Celsius
     float humidity = dht.readHumidity();
 
-    // Validate sensor readings
+  
     if (isnan(temperature) || isnan(humidity)) {
       Serial.println(" Failed to read from DHT sensor!");
     } else {
       Serial.printf("Temperature: %.2f °C, Humidity: %.2f %%\n", temperature, humidity);
 
-      // Prepare JSON payload
+      
       String jsonPayload = String("{\"temperature\":") + temperature +
                            ",\"humidity\":" + humidity + "}";
 
-      // Send HTTP POST request
       HTTPClient http;
       http.begin(SERVER_URL);
       http.addHeader("Content-Type", "application/json");
@@ -75,5 +70,5 @@ void loop() {
     WiFi.reconnect();
   }
 
-  delay(10000); // Send every 10 seconds
+  delay(10000); 
 }
